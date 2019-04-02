@@ -157,7 +157,8 @@ class DataReader(object):
     def _is_valid_input_data(self, input_line):
         """is the input data valid"""
         try:
-            dic, p = input_line.strip().decode('utf-8').split('\t')
+            #dic, p = input_line.strip().decode('utf-8').split('\t')
+            dic, p = input_line.strip().split('\t')
             dic = json.loads(dic)
         except:
             return False
@@ -172,9 +173,10 @@ class DataReader(object):
     def _get_feed_iterator(self, line, need_input=False, need_label=True):
         # verify that the input format of each line meets the format
         if not self._is_valid_input_data(line):
-            print >> sys.stderr, 'Format is error'
+            sys.stderr.write('Format is error\n')
             return None
-        dic, p = line.strip().decode('utf-8').split('\t')
+        #dic, p = line.strip().decode('utf-8').split('\t')
+        dic, p = line.strip().split('\t')
         dic = json.loads(dic)
         sentence = dic['text']
         sentence_term_list = [item['word'] for item in dic['postag']]
@@ -257,7 +259,7 @@ class DataReader(object):
 
     def _get_reverse_dict(self, dict_name):
         dict_reverse = {}
-        for key, value in self._feature_dict[dict_name].iteritems():
+        for key, value in self._feature_dict[dict_name].items():
             dict_reverse[value] = key
         return dict_reverse
 
@@ -285,8 +287,8 @@ if __name__ == '__main__':
     ttt = data_generator.get_test_reader()
     for index, features in enumerate(ttt()):
         input_sent, word_idx_list, postag_list, p_idx, label_list = features
-        print input_sent.encode('utf-8')
-        print '1st features:', len(word_idx_list), word_idx_list
-        print '2nd features:', len(postag_list), postag_list
-        print '3rd features:', len(p_idx), p_idx
-        print '4th features:', len(label_list), label_list
+        print(input_sent)
+        print('1st features:', len(word_idx_list), word_idx_list)
+        print('2nd features:', len(postag_list), postag_list)
+        print('3rd features:', len(p_idx), p_idx)
+        print('4th features:', len(label_list), label_list)

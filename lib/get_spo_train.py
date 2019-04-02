@@ -39,6 +39,7 @@ def get_p(input_file):
             p_list = [item['predicate'] for item in spo_list]
             for p in p_list:
                 print "\t".join([json.dumps(dic, ensure_ascii=False), p]).encode('utf-8')
+                #print("\t".join([json.dumps(dic, ensure_ascii=False), p]))
 
 
 if __name__ == '__main__':

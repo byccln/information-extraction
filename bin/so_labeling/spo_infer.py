@@ -22,7 +22,7 @@ import json
 import os
 import sys
 import argparse
-import ConfigParser
+import configparser
 import codecs
 
 import numpy as np
@@ -84,7 +84,8 @@ def predict_infer(conf_dict, data_reader, predict_data_path, \
             tag_split_idx = results[0].lod()[0]
             label_tag_scores = np.array(results[0])
             # sentence
-            print >> sys.stderr, 'batch_id=', batch_id
+            #sys.stderr.write('batch_id=', batch_id)
+            #print('batch_id=', batch_id)
             for sent_idx, tag_idx in enumerate(tag_split_idx[:-1]):
                 input_sent = input_data[sent_idx].split('\t')[0]
                 input_p = input_data[sent_idx].split('\t')[1]
@@ -170,7 +171,7 @@ def output(text_spo_dic, result_writer):
                     "object": spo[2], "subject_type": schema_dic[spo[1]][0], \
                     "object_type": schema_dic[spo[1]][1]}
             text_dic["spo_list"].append(dic)
-        result_writer.write(json.dumps(text_dic, ensure_ascii=False).encode('utf-8'))
+        result_writer.write(json.dumps(text_dic, ensure_ascii=False))
         result_writer.write('\n')
 
 

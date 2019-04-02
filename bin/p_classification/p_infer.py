@@ -22,7 +22,7 @@ import json
 import os
 import sys
 import argparse
-import ConfigParser
+import configparser
 import math
 
 import numpy as np
@@ -96,7 +96,8 @@ def infer_a_batch(label_scores, input_data, result_writer, data_reader):
                 p_label.append(data_reader.get_label_output(p_idx))
         for p in p_label:
             output_fields = [json.dumps(input_data[sent_idx], ensure_ascii=False), p]
-            result_writer.write('\t'.join(output_fields).encode('utf-8'))
+            #result_writer.write('\t'.join(output_fields).encode('utf-8'))
+            result_writer.write('\t'.join(output_fields))
             result_writer.write('\n')
 
 

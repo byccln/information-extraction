@@ -193,13 +193,13 @@ class RcDataReader(object):
 
     def _get_reverse_dict(self, dict_name):
         dict_reverse = {}
-        for key, value in self._feature_dict[dict_name].iteritems():
+        for key, value in self._feature_dict[dict_name].items():
             dict_reverse[value] = key
         return dict_reverse
     
     def _reverse_p_eng(self, dic):
         dict_reverse = {}
-        for key, value in dic.iteritems():
+        for key, value in dic.items():
             dict_reverse[value] = key
         return dict_reverse
 
@@ -225,7 +225,8 @@ if __name__ == '__main__':
     ttt = data_generator.get_test_reader()
     for index, features in enumerate(ttt()):
         input_sent, word_idx_list, postag_list, label_list = features
-        print input_sent.encode('utf-8')
-        print '1st features:', len(word_idx_list), word_idx_list
-        print '2nd features:', len(postag_list), postag_list
-        print '3rd features:', len(label_list), '\t', label_list
+        #print input_sent.encode('utf-8')
+        print(input_sent)
+        print('1st features:', len(word_idx_list), word_idx_list)
+        print('2nd features:', len(postag_list), postag_list)
+        print('3rd features:', len(label_list), '\t', label_list)
